@@ -59,6 +59,10 @@
   <xsl:template match="div[not(ancestor::p) and not(descendant::div) and not(descendant::p) and not(descendant::h1) and not(descendant::h2) and not(descendant::h3) and not(descendant::h4) and not(descendant::h5) and not(descendant::h6) and not(descendant::table) and not(descendant::li)]">
     <xsl:comment>Divs should create a p if nothing above them has and nothing below them will</xsl:comment>
     <w:p>
+      <w:pPr>
+          <w:jc w:val="{@align}" />
+      </w:pPr>
+
       <xsl:apply-templates />
     </w:p>
   </xsl:template>
@@ -86,6 +90,14 @@
 
   <xsl:template match="li">
     <w:p>
+      <w:pPr>
+          <w:pStyle w:val="Akapitzlist" />
+          <w:numPr>
+              <w:ilvl w:val="0" />
+              <w:numId w:val="3" />
+          </w:numPr>
+      </w:pPr>
+
       <w:r>
         <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
       </w:r>
@@ -180,14 +192,15 @@
     <w:tbl>
       <w:tblPr>
         <w:tblStyle w:val="TableGrid"/>
-        <w:tblW w:w="0" w:type="auto"/>
+        <w:tblW w:w="5000" w:type="pct"/>
+
         <w:tblBorders>
-          <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
-          <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
-          <w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
-          <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
-          <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
-          <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:top w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
+          <w:left w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
+          <w:bottom w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
+          <w:right w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideH w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideV w:val="thick" w:sz="0" w:space="0" w:color="auto"/>
         </w:tblBorders>
         <w:tblLook w:val="0600" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="1" w:noVBand="1"/>
       </w:tblPr>
